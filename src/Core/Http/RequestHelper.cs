@@ -11,11 +11,11 @@ namespace NuGet
     /// </summary>
     internal class RequestHelper
     {
-        private Func<WebRequest> _createRequest;
-        private Action<WebRequest> _prepareRequest;
-        private IProxyCache _proxyCache;
-        private ICredentialCache _credentialCache;
-        private ICredentialProvider _credentialProvider;
+        private readonly Func<WebRequest> _createRequest;
+        private readonly Action<WebRequest> _prepareRequest;
+        private readonly IProxyCache _proxyCache;
+        private readonly ICredentialCache _credentialCache;
+        private readonly ICredentialProvider _credentialProvider;
 
         HttpWebRequest _previousRequest;
         IHttpWebResponse _previousResponse;
@@ -25,7 +25,7 @@ namespace NuGet
         bool _continueIfFailed;
         int _proxyCredentialsRetryCount;
         bool _basicAuthIsUsedInPreviousRequest;
-        bool _disableBuffering;
+        readonly bool _disableBuffering;
 
         public RequestHelper(Func<WebRequest> createRequest,
             Action<WebRequest> prepareRequest,
@@ -193,7 +193,7 @@ namespace NuGet
             else if (_previousStatusCode == HttpStatusCode.Unauthorized)
             {
                 SetCredentialsOnAuthorizationError(request);
-            }            
+            }
 
             SetKeepAliveHeaders(request, _previousResponse);
             if (_usingSTSAuth)

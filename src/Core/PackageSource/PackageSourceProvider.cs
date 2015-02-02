@@ -17,7 +17,7 @@ namespace NuGet
         private readonly IEnumerable<PackageSource> _providerDefaultSources;
         private readonly IDictionary<PackageSource, PackageSource> _migratePackageSources;
         private readonly IEnumerable<PackageSource> _configurationDefaultSources;
-        private IEnvironmentVariableReader _environment;
+        private readonly IEnvironmentVariableReader _environment;
 
         public PackageSourceProvider(ISettings settingsManager)
             : this(settingsManager, providerDefaultSources: null)
@@ -285,7 +285,7 @@ namespace NuGet
         private void UpdateProviderDefaultSources(List<PackageSource> loadedSources)
         {
             // If there are NO other non-machine wide sources, providerDefaultSource should be enabled
-            bool areProviderDefaultSourcesEnabled = loadedSources.Count == 0 || loadedSources.Where(p => !p.IsMachineWide).Count() == 0;
+            bool areProviderDefaultSourcesEnabled = loadedSources.Count == 0 || loadedSources.Count(p => !p.IsMachineWide) == 0;
 
             foreach (PackageSource packageSource in _providerDefaultSources)
             {

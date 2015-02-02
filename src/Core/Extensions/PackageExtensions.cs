@@ -226,8 +226,8 @@ namespace NuGet
         }
 
         /// <summary>
-        /// Returns packages where the search text appears in any of the properties to search. 
-        /// Note that not all properties can be successfully queried via this method particularly over a OData feed. Verify indepedently if it works for the properties that need to be searched.
+        /// Returns packages where the search text appears in any of the properties to search.
+        /// Note that not all properties can be successfully queried via this method particularly over a OData feed. Verify independently if it works for the properties that need to be searched.
         /// </summary>
         public static IQueryable<T> Find<T>(this IQueryable<T> packages, IEnumerable<string> propertiesToSearch, string searchText) where T : IPackage
         {

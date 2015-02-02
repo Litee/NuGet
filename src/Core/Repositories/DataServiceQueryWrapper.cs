@@ -162,7 +162,7 @@ namespace NuGet
             {
                 var dataServiceClientException = dataServiceQueryException.InnerException as DataServiceClientException;
                 XDocument document;
-                if (dataServiceQueryException != null && 
+                if (dataServiceClientException != null && 
                     XmlUtility.TryParseDocument(dataServiceClientException.Message, out document) && 
                     document.Root.Name.LocalName.Equals("error", StringComparison.OrdinalIgnoreCase))
                 {

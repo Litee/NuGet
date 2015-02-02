@@ -29,7 +29,7 @@ namespace NuGet
         // "custom profile string" version (i.e. "net40-client"), we need an alternate index
         // by this key. I used dictionary here since I saw no value in creating a custom collection 
         // like it's done already for the _portableProfiles. Not sure why it's done that way there.
-        private IDictionary<string, NetPortableProfile> _portableProfilesByCustomProfileString;
+        private readonly IDictionary<string, NetPortableProfile> _portableProfilesByCustomProfileString;
         // key is the identifier of the optional framework and value is the list of tuple of (optional Framework Version, set of profiles in which they are optional)
         private IDictionary<string, List<VersionStringISetTuple>> _portableProfilesSetByOptionalFrameworks;
 
@@ -93,7 +93,7 @@ namespace NuGet
                     List<VersionStringISetTuple> listVersionStringISetTuple = _portableProfilesSetByOptionalFrameworks[optionalFramework.Identifier];
                     if (listVersionStringISetTuple != null)
                     {
-                        VersionStringISetTuple versionStringITuple = listVersionStringISetTuple.Where(tuple => tuple.Item1.Equals(optionalFramework.Version)).FirstOrDefault();
+                        VersionStringISetTuple versionStringITuple = listVersionStringISetTuple.FirstOrDefault(tuple => tuple.Item1.Equals(optionalFramework.Version));
                         if (versionStringITuple == null)
                         {
                             versionStringITuple = new VersionStringISetTuple(optionalFramework.Version, new HashSet<string>());
@@ -246,8 +246,8 @@ namespace NuGet
                 var root = document.Root;
                 if (root.Name.LocalName.Equals("Framework", StringComparison.Ordinal))
                 {
-                    string identifer = root.GetOptionalAttributeValue("Identifier");
-                    if (identifer == null)
+                    string identifier = root.GetOptionalAttributeValue("Identifier");
+                    if (identifier == null)
                     {
                         return null;
                     }
@@ -279,7 +279,7 @@ namespace NuGet
                         {
                             profile = "WindowsPhone71";
                         }
-                        else if (identifer.Equals("Silverlight", StringComparison.OrdinalIgnoreCase) &&
+                        else if (identifier.Equals("Silverlight", StringComparison.OrdinalIgnoreCase) &&
                                  profile.Equals("WindowsPhone", StringComparison.OrdinalIgnoreCase) &&
                                  version == new Version(4, 0))
                         {
@@ -300,7 +300,7 @@ namespace NuGet
                         }
                     }
 
-                    return new FrameworkName(identifer, version, profile);
+                    return new FrameworkName(identifier, version, profile);
                 }
             }
             catch (XmlException)

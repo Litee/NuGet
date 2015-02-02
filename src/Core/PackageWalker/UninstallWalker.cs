@@ -91,7 +91,7 @@ namespace NuGet
         {
             get
             {
-                return DisableWalkInfo ? true : base.IgnoreWalkInfo;
+                return DisableWalkInfo || base.IgnoreWalkInfo;
             }
         }
 

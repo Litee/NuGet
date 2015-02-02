@@ -110,7 +110,7 @@ namespace NuGet
         /// <summary>
         /// This property should be used only by the XML serializer. Do not use it in code.
         /// </summary>
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification="The propert setter is not supported.")]
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification="The property setter is not supported.")]
         [SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "It's easier to create a list")]
         [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "This is needed for xml serialization")]
         [XmlArray("dependencies", IsNullable = false)]

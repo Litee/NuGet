@@ -196,7 +196,7 @@ namespace NuGet
         }
 
         /// <summary>
-        /// Determins the path of the file inside a package.
+        /// Determines the path of the file inside a package.
         /// For recursive wildcard paths, we preserve the path portion beginning with the wildcard.
         /// For non-recursive wildcard paths, we use the file name from the actual file path on disk.
         /// </summary>

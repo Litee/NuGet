@@ -8,8 +8,8 @@ using System.Linq;
 namespace NuGet
 {
     /// <summary>
-    /// An IEnumerble&lt;T&gt; implementation that queries an IQueryable&lt;T&gt; on demand. 
-    /// This is usefult when a lot of data can be returned from an IQueryable source, but
+    /// An IEnumerable&lt;T&gt; implementation that queries an IQueryable&lt;T&gt; on demand. 
+    /// This is useful when a lot of data can be returned from an IQueryable source, but
     /// you don't want to do it all at once.
     /// </summary>
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "Collection isn't correct")]

@@ -19,7 +19,7 @@ namespace NuGet.Resolver
 
     public class VirtualRepository : IPackageRepository
     {
-        HashSet<IPackage> _packages;
+        readonly HashSet<IPackage> _packages;
 
         public VirtualRepository(IPackageRepository repo)
         {

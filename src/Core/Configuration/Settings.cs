@@ -138,7 +138,7 @@ namespace NuGet
                 validSettingFiles[i]._priority = validSettingFiles[i - 1]._priority - 1;
             }
 
-            // return the linked list head. Typicall, it's either the config file in %ProgramData%\NuGet\Config,
+            // return the linked list head. Typical, it's either the config file in %ProgramData%\NuGet\Config,
             // or the user specific config (%APPDATA%\NuGet\nuget.config) if there are no machine
             // wide config files. The head file is the one we want to read first, while the user specific config
             // is the one that we want to write to.
@@ -208,7 +208,7 @@ namespace NuGet
             params string[] paths)
         {
             List<Settings> settingFiles = new List<Settings>();
-            string basePath = @"NuGet\Config";
+            const string basePath = @"NuGet\Config";
             string combinedPath = Path.Combine(paths);
 
             while (true)

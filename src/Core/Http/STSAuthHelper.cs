@@ -45,7 +45,7 @@ namespace NuGet
         /// Attempts to retrieve a SAML token if the response indicates that server requires STS-based auth. 
         /// </summary>
         /// <param name="requestUri">The feed URI we were connecting to.</param>
-        /// <param name="response">The 401 response we receieved from the server.</param>
+        /// <param name="response">The 401 response we received from the server.</param>
         /// <returns>True if we were able to successfully retrieve a SAML token from the STS specified in the response headers.</returns>
         public static bool TryRetrieveSTSToken(Uri requestUri, IHttpWebResponse response)
         {

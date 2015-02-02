@@ -195,7 +195,7 @@ namespace NuGet
             _packageReferenceFile.AddEntry(packageId, version, developmentDependency, targetFramework);
 
             // Notify the source repository every time we add a new package to the repository.
-            // This doesn't really need to happen on every package add, but this is over agressive
+            // This doesn't really need to happen on every package add, but this is over aggressive
             // to combat scenarios where the 2 repositories get out of sync. If this repository is already
             // registered in the source then this will be ignored
             SourceRepository.RegisterRepository(_packageReferenceFile);

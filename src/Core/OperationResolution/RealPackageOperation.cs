@@ -10,15 +10,15 @@ namespace NuGet.Resolver
         // Null if operation's target is packages folder.
         public IProjectManager ProjectManager { get; private set; }
 
-        // The pacakge manager that the operation applies to if the operation's target
-        // is pacakges folder.
+        // The package manager that the operation applies to if the operation's target
+        // is packages folder.
         public IPackageManager PackageManager { get; private set; }
 
         // The name of the project if projectManager is not null. The reason we store 
         // the value in this variable instead of calling ProjectManager.Project.ProjectName
-        // is that the latter does not work when the porgram is paused in debugger, the error
+        // is that the latter does not work when the program is paused in debugger, the error
         // being "the function evaluation requires all threads to run".
-        private string _projectName;
+        private readonly string _projectName;
 
         public Operation(
             PackageOperation operation, 

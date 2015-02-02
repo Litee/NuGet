@@ -7,7 +7,7 @@ namespace NuGet.Analysis.Rules
 {
     internal class WinRTNameIsObsoleteRule : IPackageRule
     {
-        private static string[] Prefixes = new string[] 
+        private static readonly string[] Prefixes = new string[] 
             { "content\\winrt45\\", "lib\\winrt45\\", "tools\\winrt45\\", "content\\winrt\\", "lib\\winrt\\", "tools\\winrt\\" };
 
         public IEnumerable<PackageIssue> Validate(IPackage package)

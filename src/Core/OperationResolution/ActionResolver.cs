@@ -40,7 +40,7 @@ namespace NuGet.Resolver
             public IProjectManager ProjectManager { get; set; }
         }
 
-        private List<Operation> _operations;
+        private readonly List<Operation> _operations;
         private Dictionary<IProjectManager, VirtualRepository> _virtualProjectRepos;
         private Dictionary<IPackageManager, VirtualRepository> _virtualPackageRepos;
         private Dictionary<IPackageManager, Dictionary<IPackage, int>> _packageRefCounts;
@@ -57,21 +57,21 @@ namespace NuGet.Resolver
 
         public IEnumerable<PackageAction> ResolveActions()
         {
-            InitilizeVirtualRepos();
+            InitializeVirtualRepos();
             InitializeRefCount();
 
             List<PackageAction> actions = new List<PackageAction>();
             foreach (var operation in _operations)
             {
-                actions.AddRange(ResolveActionsForOperation(operation));                
+                actions.AddRange(ResolveActionsForOperation(operation));
             }
 
             return actions;
         }
 
         // create virtual repos
-        private void InitilizeVirtualRepos()
-        {   
+        private void InitializeVirtualRepos()
+        {
             _virtualProjectRepos = new Dictionary<IProjectManager, VirtualRepository>();
             _virtualPackageRepos = new Dictionary<IPackageManager, VirtualRepository>();
             foreach (var operation in _operations)

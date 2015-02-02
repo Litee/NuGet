@@ -10,7 +10,7 @@ namespace NuGet
     {
         private const string ServiceEndpoint = "/api/v2/package";
         private const string ApiKeyHeader = "X-NuGet-ApiKey";
-        private const int MaxRediretionCount = 20;
+        private const int MaxRedirectionCount = 20;
 
         private Lazy<Uri> _baseUri;
         private readonly string _source;
@@ -39,6 +39,7 @@ namespace NuGet
         /// </summary>
         /// <param name="apiKey">API key to be used to push the package.</param>
         /// <param name="package">The package to be pushed.</param>
+        /// <param name="packageSize">Size of the package to be pushed.</param>
         /// <param name="timeout">Time in milliseconds to timeout the server request.</param>
         /// <param name="disableBuffering">Indicates if HttpWebRequest buffering should be disabled.</param>
         public void PushPackage(string apiKey, IPackage package, long packageSize, int timeout, bool disableBuffering) 
@@ -61,15 +62,15 @@ namespace NuGet
         /// </summary>
         /// <param name="apiKey">API key to be used to push the package.</param>
         /// <param name="packageStreamFactory">A delegate which can be used to open a stream for the package file.</param>
-        /// <param name="contentLength">Size of the package to be pushed.</param>
+        /// <param name="packageSize">Size of the package to be pushed.</param>
         /// <param name="timeout">Time in milliseconds to timeout the server request.</param>
         /// <param name="disableBuffering">Disable buffering.</param>
         private void PushPackageToServer(
-            string apiKey, 
-            Func<Stream> packageStreamFactory, 
+            string apiKey,
+            Func<Stream> packageStreamFactory,
             long packageSize,
             int timeout,
-            bool disableBuffering) 
+            bool disableBuffering)
         {
             int redirectionCount = 0;
 
@@ -82,7 +83,7 @@ namespace NuGet
                 {
                     SendingRequest(this, e);
                     var request = (HttpWebRequest)e.Request;
-                    
+
                     // Set the timeout
                     if (timeout <= 0)
                     {
@@ -111,7 +112,7 @@ namespace NuGet
                 }
 
                 ++redirectionCount;
-                if (redirectionCount > MaxRediretionCount)
+                if (redirectionCount > MaxRedirectionCount)
                 {
                     throw new WebException(NuGetResources.Error_TooManyRedirections);
                 }
@@ -224,12 +225,12 @@ namespace NuGet
         }
 
         /// <summary>
-        /// Ensures that success response is received. 
+        /// Ensures that success response is received.
         /// </summary>
         /// <param name="client">The client that is making the request.</param>
         /// <param name="expectedStatusCode">The exected status code.</param>
-        /// <returns>True if success response is received; false if redirection response is received. 
-        /// In this case, _baseUri will be updated to be the new redirected Uri and the requrest 
+        /// <returns>True if success response is received; false if redirection response is received.
+        /// In this case, _baseUri will be updated to be the new redirected Uri and the request
         /// should be retried.</returns>
         private bool EnsureSuccessfulResponse(HttpClient client, HttpStatusCode? expectedStatusCode = null)
         {
@@ -237,8 +238,8 @@ namespace NuGet
             try
             {
                 response = (HttpWebResponse)client.GetResponse();
-                if (response != null && 
-                    ((expectedStatusCode.HasValue && expectedStatusCode.Value != response.StatusCode) || 
+                if (response != null &&
+                    ((expectedStatusCode.HasValue && expectedStatusCode.Value != response.StatusCode) ||
 
                     // If expected status code isn't provided, just look for anything 400 (Client Errors) or higher (incl. 500-series, Server Errors)
                     // 100-series is protocol changes, 200-series is success, 300-series is redirect.

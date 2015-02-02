@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace NuGet.Resolver
 {
@@ -42,9 +37,9 @@ namespace NuGet.Resolver
 
         // The name of the project if projectManager is not null. The reason we store 
         // the value in this variable instead of calling ProjectManager.Project.ProjectName
-        // is that the latter does not work when the porgram is paused in debugger, the error
+        // is that the latter does not work when the program is paused in debugger, the error
         // being "the function evaluation requires all threads to run".
-        private string _projectName;
+        private readonly string _projectName;
 
         public PackageProjectAction(PackageActionType actionType, IPackage package, IProjectManager projectManager) :
             base(actionType, package)

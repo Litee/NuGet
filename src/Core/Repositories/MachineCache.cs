@@ -69,7 +69,7 @@ namespace NuGet
             if (files.Count >= MaxPackages)
             {
                 // It's expensive to hit the file system to get the last accessed date for files
-                // To reduce this cost from occuring frequently, we'll purge packages in batches allowing for a 20% buffer.
+                // To reduce this cost from occurring frequently, we'll purge packages in batches allowing for a 20% buffer.
                 var filesToDelete = files.OrderBy(FileSystem.GetLastAccessed)
                                          .Take(files.Count - (int)(0.8 * MaxPackages))
                                          .ToList();
@@ -254,7 +254,7 @@ namespace NuGet
                         }
                         catch (AbandonedMutexException)
                         {
-                            // TODO: consider logging a warning; abandonning a mutex is an indication something wrong is going on
+                            // TODO: consider logging a warning; abandoning a mutex is an indication something wrong is going on
                             owner = true; // now mine
                         }
 

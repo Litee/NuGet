@@ -33,7 +33,7 @@ namespace NuGet
         /// <param name="fileSystem">The file system where the packages are stored. Normally this is
         /// directory $(SolutionDir)/packages.</param>
         /// <param name="storeFileSystem">The file system where the repositories.config file is stored.
-        /// Noramlly this is the same as <paramref name="fileSystem"/>.</param>
+        /// Normally this is the same as <paramref name="fileSystem"/>.</param>
         /// <param name="configSettingsFileSystem">The file system where the solution level 
         /// packages.config is stored. Normally, this is directory $(SolutionDir)/.nuget.</param>
         public SharedPackageRepository(IPackagePathResolver resolver, IFileSystem fileSystem, IFileSystem storeFileSystem, IFileSystem configSettingsFileSystem)
@@ -148,7 +148,6 @@ namespace NuGet
                 {
                     // always search for .nuspec-based packages last
                     yield return new UnzippedPackage(FileSystem, directory);
-                    continue;
                 }
             }
         }

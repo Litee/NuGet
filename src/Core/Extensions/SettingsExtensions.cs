@@ -90,7 +90,7 @@ namespace NuGet
         /// <param name="encrypt">Determines if the value needs to be encrypted prior to storing.</param>
         public static void SetConfigValue(this ISettings settings, string key, string value, bool encrypt = false)
         {
-            if (encrypt == true)
+            if (encrypt)
             {
                 settings.SetEncryptedValue(ConfigSection, key, value);
             }

@@ -191,10 +191,10 @@ namespace NuGet
         {
             return repositories.SelectMany(repository =>
             {
-                var aggrgeateRepository = repository as AggregateRepository;
-                if (aggrgeateRepository != null)
+                var aggregateRepository = repository as AggregateRepository;
+                if (aggregateRepository != null)
                 {
-                    return aggrgeateRepository.Repositories.ToArray();
+                    return aggregateRepository.Repositories.ToArray();
                 }
                 return new[] { repository };
             });

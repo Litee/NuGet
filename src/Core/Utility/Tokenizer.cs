@@ -24,7 +24,7 @@ namespace NuGet
     /// </summary>
     public class Tokenizer
     {
-        string _text;
+        readonly string _text;
         int _index;
 
         public Tokenizer(string text)

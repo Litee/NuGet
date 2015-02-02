@@ -204,7 +204,7 @@ namespace NuGet
                 return Tuple.Create(package, projectManager);
             }
 
-            // The package could be a solution level pacakge.
+            // The package could be a solution level package.
             if (version != null)
             {
                 package = packageManager.LocalRepository.FindPackage(id, version);

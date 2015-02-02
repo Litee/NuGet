@@ -44,7 +44,7 @@ namespace NuGet
 
             builder.Properties.AddRange(assemblyMetadata.Properties);
 
-            // Let the id be overriden by AssemblyMetadataAttribute
+            // Let the id be overridden by AssemblyMetadataAttribute
             // This preserves the existing behavior if no id metadata 
             // is provided by the assembly.
             if (builder.Properties.ContainsKey("id"))
@@ -133,7 +133,7 @@ namespace NuGet
             {
                 var properties = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 // NOTE: we make this check only by attribute type fullname, and we try to duck
-                // type it, therefore enabling the same metadata extesibility behavior for other platforms
+                // type it, therefore enabling the same metadata extensibility behavior for other platforms
                 // that don't define the attribute already as part of the framework. 
                 // A package author could simply declare this attribute in his own project, using 
                 // the same namespace and members, and we'd pick it up automatically. This is consistent 

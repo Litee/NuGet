@@ -9,8 +9,8 @@ namespace NuGet.Resolver
 {
     public class NullProjectManager : IProjectManager
     {
-        IPackageRepository _localRepository;
-        IProjectSystem _project;        
+        readonly IPackageRepository _localRepository;
+        readonly IProjectSystem _project;
 
         public NullProjectManager(IPackageManager packageManager)
         {

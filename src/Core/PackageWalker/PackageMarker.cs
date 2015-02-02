@@ -158,7 +158,7 @@ namespace NuGet
 
         public IPackage FindPackage(string packageId, SemanticVersion version)
         {
-            return FindPackagesById(packageId).Where(p => p.Version.Equals(version)).FirstOrDefault();
+            return FindPackagesById(packageId).FirstOrDefault(p => p.Version.Equals(version));
         }
 
         public IEnumerable<IPackage> FindPackagesById(string packageId)

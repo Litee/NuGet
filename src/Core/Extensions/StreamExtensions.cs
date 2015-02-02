@@ -106,7 +106,7 @@ namespace NuGet
 
         /// <summary>
         /// Read the specified stream and return all lines, but ignoring those within the 
-        /// NUGET: BEGIN LICENSE TEXT and NUGET: END LICENSE TEXT markers, case-insenstively.
+        /// NUGET: BEGIN LICENSE TEXT and NUGET: END LICENSE TEXT markers, case-insensitively.
         /// </summary>
         private static IEnumerable<string> ReadStreamLines(Stream stream)
         {

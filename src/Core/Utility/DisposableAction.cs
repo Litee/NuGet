@@ -10,7 +10,7 @@ namespace NuGet
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This is immutable. Multiple calls to dispose will be complete no-ops and there is no state stored.")]
         public static readonly DisposableAction NoOp = new DisposableAction(() => { });
 
-        private Action _action;
+        private readonly Action _action;
 
         public DisposableAction(Action action)
         {

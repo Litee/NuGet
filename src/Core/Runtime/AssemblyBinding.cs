@@ -115,7 +115,7 @@ namespace NuGet.Runtime
             //
             //   <codeBase href="{CodeBaseHref}" version="{CodeBaseVersion}" />
             //</dependentAssembly>
-            XElement dependenyAssembly = new XElement(GetQualifiedName("dependentAssembly"),
+            XElement dependentAssembly = new XElement(GetQualifiedName("dependentAssembly"),
                              new XElement(GetQualifiedName("assemblyIdentity"),
                                  new XAttribute("name", Name),
                                  new XAttribute("publicKeyToken", PublicKeyToken),
@@ -127,24 +127,24 @@ namespace NuGet.Runtime
 
             if (!String.IsNullOrEmpty(PublisherPolicy))
             {
-                dependenyAssembly.Add(new XElement(GetQualifiedName("publisherPolicy"),
+                dependentAssembly.Add(new XElement(GetQualifiedName("publisherPolicy"),
                                         new XAttribute("apply", PublisherPolicy)));
             }
 
             if (!String.IsNullOrEmpty(CodeBaseHref))
             {
                 Debug.Assert(!String.IsNullOrEmpty(CodeBaseVersion));
-                dependenyAssembly.Add(new XElement(GetQualifiedName("codeBase"),
+                dependentAssembly.Add(new XElement(GetQualifiedName("codeBase"),
                                           new XAttribute("href", CodeBaseHref),
                                           new XAttribute("version", CodeBaseVersion)));
             }
 
 
             // Remove empty attributes
-            dependenyAssembly.RemoveAttributes(a => String.IsNullOrEmpty(a.Value));
+            dependentAssembly.RemoveAttributes(a => String.IsNullOrEmpty(a.Value));
 
 
-            return dependenyAssembly;
+            return dependentAssembly;
         }
 
         public override string ToString()

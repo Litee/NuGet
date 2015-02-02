@@ -8,7 +8,7 @@ namespace NuGet
 {
     public class ConfigurationDefaults
     {
-        private ISettings _settingsManager = NullSettings.Instance;
+        private readonly ISettings _settingsManager = NullSettings.Instance;
         private const string ConfigurationDefaultsFile = "NuGetDefaults.config";
         private static readonly ConfigurationDefaults _instance = InitializeInstance();
 

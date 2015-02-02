@@ -282,7 +282,7 @@ namespace NuGet
         /// Check to see if this package applies to a project based on 2 criteria:
         /// 1. The package has project content (i.e. content that can be applied to a project lib or content files)
         /// 2. The package is referenced by any other project
-        /// 3. The package has at least one dependecy
+        /// 3. The package has at least one dependency
         /// 
         /// This logic will probably fail in one edge case. If there is a meta package that applies to a project
         /// that ended up not being installed in any of the projects and it only exists at solution level.

@@ -144,7 +144,7 @@ namespace NuGet
             { "CompactFramework", "cf" }
         };
 
-        private static readonly Dictionary<string, CompatibilityMapping> _compatibiltyMapping = new Dictionary<string, CompatibilityMapping>(StringComparer.OrdinalIgnoreCase) {
+        private static readonly Dictionary<string, CompatibilityMapping> _compatibilityMapping = new Dictionary<string, CompatibilityMapping>(StringComparer.OrdinalIgnoreCase) {
             {
                 // Client profile is compatible with the full framework (empty string is full)
                 NetFrameworkIdentifier, new CompatibilityMapping(StringComparer.OrdinalIgnoreCase) {
@@ -160,7 +160,7 @@ namespace NuGet
             }
         };
 
-        // These aliases allow us to accept 'wp', 'wp70', 'wp71', 'windows', 'windows8' as valid target farmework folders.
+        // These aliases allow us to accept 'wp', 'wp70', 'wp71', 'windows', 'windows8' as valid target framework folders.
         private static readonly Dictionary<FrameworkName, FrameworkName> _frameworkNameAlias = new Dictionary<FrameworkName, FrameworkName>(FrameworkNameEqualityComparer.Default)
         {
             { new FrameworkName("WindowsPhone, Version=v0.0"), new FrameworkName("Silverlight, Version=v3.0, Profile=WindowsPhone") },
@@ -176,7 +176,7 @@ namespace NuGet
 
         // See IsCompatible
         // The ASP.Net framework authors desire complete compatibility between 'aspnet50' and all 'net' versions
-        // So we use this MaxVersion value to achieve complete compatiblilty.
+        // So we use this MaxVersion value to achieve complete compatibility.
         private static readonly Version MaxVersion = new Version(Int32.MaxValue, Int32.MaxValue, Int32.MaxValue, Int32.MaxValue);
         private static readonly Dictionary<string, FrameworkName> _equivalentProjectFrameworks = new Dictionary<string, FrameworkName>()
         {
@@ -907,7 +907,7 @@ namespace NuGet
 
             // Get the compatibility mapping for this framework identifier
             CompatibilityMapping mapping;
-            if (_compatibiltyMapping.TryGetValue(projectFrameworkName.Identifier, out mapping))
+            if (_compatibilityMapping.TryGetValue(projectFrameworkName.Identifier, out mapping))
             {
                 // Get all compatible profiles for the target profile
                 string[] compatibleProfiles;
@@ -1003,7 +1003,7 @@ namespace NuGet
                 // The package is installed into a net45 project. We want to pick the 'net40' folder, even though
                 // the 'net45' in portable folder has a matching version with the project's framework.
                 //
-                // So, in order to achieve that, here we give the folder that has matching identifer with the project's 
+                // So, in order to achieve that, here we give the folder that has matching identifier with the project's 
                 // framework identifier a compatibility score of 10, to make sure it weighs more than the compatibility of matching version.
 
                 compatibility += 10 * (1L << 32);
@@ -1171,7 +1171,7 @@ namespace NuGet
             else if(portableProfileTable.HasCompatibleProfileWith(packageFrameworkProfile, projectFrameworkName, portableProfileTable))
             {
                 // Get the list of portable profiles that supports projectFrameworkName
-                // And, see if there is atleast 1 profile which is compatible with packageFrameworkProfile
+                // And, see if there is at least 1 profile which is compatible with packageFrameworkProfile
                 // If so, return 0 - (packageFrameworkProfile.SupportedFrameworks.Count * 2)
                 return 0 - (packageFrameworkProfile.SupportedFrameworks.Count * 2);
             }

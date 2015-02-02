@@ -17,7 +17,7 @@ namespace NuGet
 
     public class DependencyResolverFromRepo : IDependencyResolver2
     {
-        IPackageRepository _repo;
+        readonly IPackageRepository _repo;
 
         public DependencyResolverFromRepo(IPackageRepository repo)
         {

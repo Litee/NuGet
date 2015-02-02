@@ -30,7 +30,7 @@ namespace NuGet
 
         internal T GetOrAdd<T>(object cacheKey, Func<T> factory, TimeSpan expiration, bool absoluteExpiration = false) where T : class
         {
-            // Although this method would return values that have expired while also elavating them to unexpired entries,
+            // Although this method would return values that have expired while also elevating them to unexpired entries,
             // none of the data that we cache is time sensitive. At worst, an item will be cached for an extra _cleanupInterval duration.
 
             CacheItem cacheFactory = new CacheItem(factory, expiration, absoluteExpiration);
